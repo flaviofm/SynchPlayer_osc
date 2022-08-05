@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synch Device Time</title>
+
+    <link rel="stylesheet" href="style.css?v6">
+</head>
+
+<body>
+    <div id="loading">Loading
+        <button onclick="setup()">BEGIN</button>
+    </div>
+    <div id="playOverlay">
+
+        <section id="frontend">
+            <!-- <select name="track" id="track" onchange="p.track = this.value">
+                <option value='{"src": "Tracce/metronome.mp3", "id": 0}' selected>Metronomo</option>
+            </select> -->
+            <!-- <button id="playBtn" onclick="p.play()" disabled>Play</button> -->
+
+
+            <div id="underlay">
+                <audio id="audio" preload="metadata" controls loop preload>
+                    <!--<source src="http://francescoflaviomartinelli.com/SynchServerTime/metronome.mp3#t=0.1" type="audio/mpeg">-->
+                </audio>
+                <h1 id="trackH3"></h1>
+                <h1 id="date"></h1>
+                <h1 id="delay"></h1>
+                <h1 id="check"></h1>
+                <h1 id="tempo"></h1>
+                <h1 id="master"></h1>
+            </div>
+
+        </section>
+    </div>
+
+
+    <!-- <label for="masterInput">Master: <input min="0" max="100" type="number" name="masterInput" id="masterInput"
+            placeholder="" onchange="setMasterForTrack()"></label> -->
+</body>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js'
+    integrity='sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=='
+    crossorigin='anonymous'></script>
+<script src="main.js"></script>
+
+</html>

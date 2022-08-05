@@ -1,0 +1,105 @@
+body {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#playOverlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#playOverlay section {
+    width: 50%;
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+
+
+#loading {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    /* pointer-events: none; */
+    background-color: rgba(0, 0, 0, 0.842);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#volumes {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 80%;
+}
+
+#volumes h3 {
+    margin-bottom: 5px;
+}
+
+#volumes>div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+#volumes input {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#backend {
+    flex-direction: column;
+    border-left: white 1px solid;
+    overflow-y: auto;
+}
+
+#underlay {
+    position: absolute;
+    z-index: -99;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+
+#underlay.active {
+    z-index: 1;
+}
+
+
+@media screen and (max-width: 768px) {
+    #backend {
+        display: none!important;
+    }
+    #frontend {
+        width: 100vw!important;
+    }
+}
