@@ -68,7 +68,7 @@ let devices = []
 
 let counter = 0
 
-let pingTimeout = 20000
+let pingTimeout = 4000
 
 let tracks = []
 let MANAGER //controller
@@ -227,19 +227,39 @@ app.post('/ping', (req, res) => {
       //     track: replacer
       //   }
       // }
-      if (reassignmentTargets.length > 0) {
-        if (reassignmentTargets[0] == id) {
-          console.log("Reassign to", reassignmentTargets[0]);
-          reassignmentTargetId = null
-          removeTrack(d.track)
+      // if (reassignmentTargets.length > 0) {
+      //   if (reassignmentTargets[0] == id) {
+      //     console.log("Reassign to", reassignmentTargets[0]);
+      //     reassignmentTargetId = null
+      //     removeTrack(d.track)
+      //     let replacer = MANAGER.track
+      //     d.track = replacer;
+      //     response = {
+      //       reassign: true,
+      //       track: replacer
+      //     }
+      //   }
+      // }
+
+
+      if(devices[devices.length - 1].id == d.id) {
+        if(MANAGER.trackPreview.id < d.track.id) {
+          console.log("REPLACING");
           let replacer = MANAGER.track
+          removeTrack(d.track)
           d.track = replacer;
           response = {
             reassign: true,
             track: replacer
           }
+          devices.sort((a, b)=>{
+            return a.track.id - b.track.id
+          })
+          console.log("SORTED", devices);
         }
       }
+
+
         res.send(JSON.stringify(response));
         // if(MANAGER.trackPreview.id < d.track.id){
         //   // response = {reassign: true, track: MANAGER.track}
@@ -265,15 +285,22 @@ app.post('/ping', (req, res) => {
     function removeDevice(id) {
       console.log("Removing Device", id);
       // removeTrack();
+      // setTargetForReassignFromDevice(devices.filter(e => {
+      //   if (e.id == id) return true
+      //   return false
+      // })[0])
       devices = devices.filter(e => {
         if (e.id != id) return true
         removeTrack(e.track)
+        checkReassignment();
         return false
       })
-      setTargetForReassignFromDevice(devices.filter(e => {
-        if (e.id == id) return true
-        return false
-      })[0])
+    }
+
+    function checkReassignment() {
+      let missing = MANAGER.trackPreview
+      if(missing.id < tracks.length){
+      }
     }
 
     function setTargetForReassignFromDevice(d) {
@@ -335,3 +362,21 @@ app.post('/ping', (req, res) => {
         reassignmentTargetId = candidate.id
       }
     }
+
+    // var waiting = false
+    // function checkForMissingTrack() {
+    //   if(waiting) return
+    //   //Get missing track
+    //   let missing = MANAGER.trackPreview
+    //   //Check if missing track is last
+    //   if(missing.id < tracks.length-1) {
+    //     let notLast = missing.istances < tracks.find(el=> e.id==missing.id+1)
+    //   }
+    //   if(!last) {waiting=false; return}
+
+    //   //
+
+    // }
+
+    // setInterval(checkForMissingTrack, 10000)
+

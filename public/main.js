@@ -8,7 +8,7 @@ class Player {
         this._start = 0
         this.interval = 0
         this.id
-        this.pingTime = 10000
+        this.pingTime = 1000
         this.adjustTime = 2
         this.checkTime = 5000
     }
