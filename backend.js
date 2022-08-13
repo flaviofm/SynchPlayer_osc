@@ -110,7 +110,26 @@ function setupTracks() {
     new Track(16, 'Z2', 'Z2.mp3'),
     new Track(17, 'Z2', 'Z2.mp3'),
     new Track(18, 'Z2', 'Z2.mp3'),
-    new Track(19, 'Z2', 'Z2.mp3')
+    new Track(19, 'Z2', 'Z2.mp3'),
+    new Track(20, 'Z2', 'Z2.mp3'),
+    new Track(21, 'Z2', 'Z2.mp3'),
+    new Track(22, 'Z2', 'Z2.mp3'),
+    new Track(23, 'Z2', 'Z2.mp3'),
+    new Track(24, 'Z2', 'Z2.mp3'),
+    new Track(25, 'Z2', 'Z2.mp3'),
+    new Track(26, 'Z2', 'Z2.mp3'),
+    new Track(27, 'Z2', 'Z2.mp3'),
+    new Track(28, 'Z2', 'Z2.mp3'),
+    new Track(29, 'Z2', 'Z2.mp3'),
+    new Track(30, 'Z2', 'Z2.mp3'),
+    new Track(31, 'Z2', 'Z2.mp3'),
+    new Track(32, 'Z2', 'Z2.mp3'),
+    new Track(34, 'Z2', 'Z2.mp3'),
+    new Track(35, 'Z2', 'Z2.mp3'),
+    new Track(36, 'Z2', 'Z2.mp3'),
+    new Track(37, 'Z2', 'Z2.mp3'),
+    new Track(38, 'Z2', 'Z2.mp3'),
+    new Track(39, 'Z2', 'Z2.mp3')
   ]
 
   MANAGER = new Controller(tracks)
@@ -198,6 +217,7 @@ app.post('/ping', (req, res) => {
     res.send(JSON.stringify({error: true}));
     return
   }
+  console.log("Ping", d.id, d.track.title);
   // console.log(d);
   // console.log("Ping", id, d);
   clearTimeout(d.timeout)
