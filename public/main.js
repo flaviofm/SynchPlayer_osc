@@ -12,6 +12,7 @@ class Player {
         this.pingTimeout = 7500
         this.adjustTime = 2
         this.checkTime = 5000
+        this.pinging = false
     }
 
     set start(t) {
@@ -81,7 +82,8 @@ class Player {
         //     this.player.currentTime = 100
         // }, 500)
         this.check()
-        this.pingSetup()
+        this.pingSetup(this.pinging)
+        this.pinging = true
     }
 
     async fadeIn(f = ()=>{console.log("faded in")}){
@@ -171,7 +173,8 @@ class Player {
         })
     }
 
-    async pingSetup() {
+    async pingSetup(p) {
+        if(p) return false
         console.log("PINGING", this.id);
         let res = await this.ping().catch(err=>{
             console.log(err);
@@ -196,7 +199,7 @@ class Player {
         }
         setTimeout(() => {
             // console.log("ping");
-            this.pingSetup()
+            this.pingSetup(true)
         }, this.pingTime)
     }
 
