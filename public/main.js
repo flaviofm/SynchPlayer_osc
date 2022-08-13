@@ -9,7 +9,7 @@ class Player {
         this.interval = 0
         this.id
         this.pingTime = 2500
-        this.pingTimeout = 10000
+        this.pingTimeout = 7500
         this.adjustTime = 2
         this.checkTime = 5000
     }
@@ -174,7 +174,7 @@ class Player {
     async pingSetup() {
         console.log("PINGING", this.id);
         let res = await this.ping().catch(err=>{
-            alert(err);
+            console.log(err);
             console.log("TIMEOUT DISCONNESSO");
             location.reload();
             return
