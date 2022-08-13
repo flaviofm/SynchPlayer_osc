@@ -100,7 +100,7 @@ function setupTracks() {
     new Track(5, 'Gbit nuovo', 'Gbit nuovo.mp3'),
     new Track(6, 'Gbit nuovo', 'Gbit nuovo.mp3'),
     new Track(8, 'Gbit nuovo', 'Gbit nuovo.mp3'),
-    new Track(9, 'K slow', 'K prova slow.mp3'),
+    new Track(9, 'K slow', 'K slow.mp3'),
     new Track(10, 'K1', 'K prova1.mp3'),
     new Track(11, 'k2', 'k prova2.mp3'),
     new Track(12, 'Z1', 'Z1.mp3'),
