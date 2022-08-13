@@ -157,7 +157,7 @@ class Player {
         return new Promise(async (s, e) => {
             //TIMEOUT FETCH
             setTimeout(() =>{
-                reject("DISCONNESSO");
+                e("DISCONNESSO");
             }, this.pingTimeout)
             //SUCCESS FETCH
             s(await fetch("/ping", {
