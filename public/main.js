@@ -1,5 +1,3 @@
-const { reject } = require("async");
-
 class Player {
     constructor() {
         this.player = $("#audio").get(0);
