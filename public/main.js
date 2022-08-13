@@ -9,6 +9,7 @@ class Player {
         this.interval = 0
         this.id
         this.pingTime = 2500
+        this.pingTimeout = 10000
         this.adjustTime = 2
         this.checkTime = 5000
     }
@@ -150,17 +151,33 @@ class Player {
         // });
     }
 
+    async ping() {
+        return new Promise(async (s, e) => {
+            //TIMEOUT FETCH
+            setTimeout(() =>{
+                throw 123
+            }, this.pingTimeout)
+            //SUCCESS FETCH
+            s(await fetch("/ping", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: this.id
+                })
+            }))
+        })
+    }
+
     async pingSetup() {
         console.log("PINGING", this.id);
-        let res = await fetch("/ping", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                id: this.id
-            })
+        let res = await this.ping().catch(err=>{
+            alert(err);
+            console.log("TIMEOUT DISCONNESSO");
+            location.reload();
+            return
         })
         res = await res.json()
         if(res.error) {
