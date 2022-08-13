@@ -1,3 +1,5 @@
+const { reject } = require("async");
+
 class Player {
     constructor() {
         this.player = $("#audio").get(0);
@@ -155,7 +157,7 @@ class Player {
         return new Promise(async (s, e) => {
             //TIMEOUT FETCH
             setTimeout(() =>{
-                throw 123
+                reject("DISCONNESSO");
             }, this.pingTimeout)
             //SUCCESS FETCH
             s(await fetch("/ping", {
