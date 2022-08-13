@@ -83,6 +83,7 @@ class Player {
         // }, 500)
         this.check()
         this.pingSetup(this.pinging)
+        //per evitare che si raddoppino i ping
         this.pinging = true
     }
 
@@ -199,7 +200,7 @@ class Player {
         }
         setTimeout(() => {
             // console.log("ping");
-            this.pingSetup(true)
+            this.pingSetup(false)
         }, this.pingTime)
     }
 
