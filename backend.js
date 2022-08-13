@@ -58,7 +58,7 @@ let devices = []
 
 let counter = 0
 
-let pingTimeout = 15000
+let pingTimeout = 17500
 
 let tracks = []
 let MANAGER //controller
@@ -202,6 +202,7 @@ app.post('/ping', (req, res) => {
   // console.log("Ping", id, d);
   clearTimeout(d.timeout)
   d.timeout = setTimeout(() => {
+    console.log("TIMEOUT", d.id, d.track.title);
     removeDevice(d.id)
   }, pingTimeout)
 
@@ -252,7 +253,7 @@ app.post('/ping', (req, res) => {
       devices.sort((a, b) => {
         return a.track.id - b.track.id
       })
-      console.log("SORTED", devices);
+      console.log("SORTED");
     }
   }
 
