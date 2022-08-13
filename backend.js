@@ -193,6 +193,11 @@ app.post('/ping', (req, res) => {
   let id = req.body.id
   // console.log("PING FROM", id, devices.length);
   let d = getDevice(id)
+  if(d == undefined) {
+    console.log("EXTRA DEVICE - REMOVING", id);
+    res.send(JSON.stringify({error: true}));
+    return
+  }
   // console.log(d);
   // console.log("Ping", id, d);
   clearTimeout(d.timeout)
@@ -201,7 +206,8 @@ app.post('/ping', (req, res) => {
   }, pingTimeout)
 
   let response = {
-    reassign: false
+    reassign: false,
+    error: false
   }
 
   // console.log(reassignmentTargetId);
@@ -240,6 +246,7 @@ app.post('/ping', (req, res) => {
       d.track = replacer;
       response = {
         reassign: true,
+        error: false,
         track: replacer
       }
       devices.sort((a, b) => {

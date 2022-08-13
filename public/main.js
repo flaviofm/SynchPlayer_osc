@@ -163,8 +163,14 @@ class Player {
             })
         })
         res = await res.json()
+        if(res.error) {
+            console.log("DISCONNESSO");
+            location.reload();
+            return
+        }
         if(res.reassign) {
             console.log("REASSIGNING", res.track);
+            //TODO: fade in 5/6 secondi -> 2 out e 4 in
             await this.fadeOut()
             this.track = res.track
             this.fadeIn()
