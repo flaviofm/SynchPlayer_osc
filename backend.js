@@ -58,7 +58,7 @@ let devices = []
 
 let counter = 0
 
-let pingTimeout = 10000
+let pingTimeout = 15000
 
 let tracks = []
 let MANAGER //controller
