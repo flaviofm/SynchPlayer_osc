@@ -47,16 +47,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// var connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'u447090379_user1',
-//   password: "pompet-tYnfig-3qahgo",
-//   database: 'u447090379_db1'
-// });
-
-// connection.connect(); 
-
-
 let startTime = Date.now()
 
 let duration = 1188.8848979591837 * 1000 //ms durata
@@ -68,7 +58,7 @@ let devices = []
 
 let counter = 0
 
-let pingTimeout = 4000
+let pingTimeout = 10000
 
 let tracks = []
 let MANAGER //controller
@@ -199,184 +189,182 @@ app.post('/volume', (req, res) => {
 })
 
 app.post('/ping', (req, res) => {
-      // console.log(req.body);
-      let id = req.body.id
-      // console.log("PING FROM", id, devices.length);
-      let d = getDevice(id)
-      // console.log(d);
-      // console.log("Ping", id, d);
-      clearTimeout(d.timeout)
-      d.timeout = setTimeout(() => {
-        removeDevice(d.id)
-      }, pingTimeout)
+  // console.log(req.body);
+  let id = req.body.id
+  // console.log("PING FROM", id, devices.length);
+  let d = getDevice(id)
+  // console.log(d);
+  // console.log("Ping", id, d);
+  clearTimeout(d.timeout)
+  d.timeout = setTimeout(() => {
+    removeDevice(d.id)
+  }, pingTimeout)
 
-      let response = {
-        reassign: false
+  let response = {
+    reassign: false
+  }
+
+  // console.log(reassignmentTargetId);
+
+  // if (reassignmentTargetId && reassignmentTargetId == id) {
+  //   console.log("Reassign to", reassignmentTargetId);
+  //   reassignmentTargetId = null
+  //   removeTrack(d.track)
+  //   let replacer = MANAGER.track
+  //   d.track = replacer;
+  //   response = {
+  //     reassign: true,
+  //     track: replacer
+  //   }
+  // }
+  // if (reassignmentTargets.length > 0) {
+  //   if (reassignmentTargets[0] == id) {
+  //     console.log("Reassign to", reassignmentTargets[0]);
+  //     reassignmentTargetId = null
+  //     removeTrack(d.track)
+  //     let replacer = MANAGER.track
+  //     d.track = replacer;
+  //     response = {
+  //       reassign: true,
+  //       track: replacer
+  //     }
+  //   }
+  // }
+
+
+  if (devices[devices.length - 1].id == d.id) {
+    if (MANAGER.trackPreview.id < d.track.id) {
+      console.log("REPLACING");
+      let replacer = MANAGER.track
+      removeTrack(d.track)
+      d.track = replacer;
+      response = {
+        reassign: true,
+        track: replacer
       }
-
-      // console.log(reassignmentTargetId);
-
-      // if (reassignmentTargetId && reassignmentTargetId == id) {
-      //   console.log("Reassign to", reassignmentTargetId);
-      //   reassignmentTargetId = null
-      //   removeTrack(d.track)
-      //   let replacer = MANAGER.track
-      //   d.track = replacer;
-      //   response = {
-      //     reassign: true,
-      //     track: replacer
-      //   }
-      // }
-      // if (reassignmentTargets.length > 0) {
-      //   if (reassignmentTargets[0] == id) {
-      //     console.log("Reassign to", reassignmentTargets[0]);
-      //     reassignmentTargetId = null
-      //     removeTrack(d.track)
-      //     let replacer = MANAGER.track
-      //     d.track = replacer;
-      //     response = {
-      //       reassign: true,
-      //       track: replacer
-      //     }
-      //   }
-      // }
-
-
-      if(devices[devices.length - 1].id == d.id) {
-        if(MANAGER.trackPreview.id < d.track.id) {
-          console.log("REPLACING");
-          let replacer = MANAGER.track
-          removeTrack(d.track)
-          d.track = replacer;
-          response = {
-            reassign: true,
-            track: replacer
-          }
-          devices.sort((a, b)=>{
-            return a.track.id - b.track.id
-          })
-          console.log("SORTED", devices);
-        }
-      }
-
-
-        res.send(JSON.stringify(response));
-        // if(MANAGER.trackPreview.id < d.track.id){
-        //   // response = {reassign: true, track: MANAGER.track}
-        // }
-
+      devices.sort((a, b) => {
+        return a.track.id - b.track.id
       })
-
-    function getDevice(id) {
-      console.log("FINDING", devices.length, id);
-      return devices.find((e) => {
-        // console.log(e.id, id);
-        return e.id == id
-      })
+      console.log("SORTED", devices);
     }
+  }
 
-    function removeTrack(t) {
-      let ft = tracks.find((e) => e.id == t.id)
-      // console.log("REMOVE ft", ft, t);
-      ft.istances--
-      console.log("Removing Track", t.title);
-    }
 
-    function removeDevice(id) {
-      console.log("Removing Device", id);
-      // removeTrack();
-      // setTargetForReassignFromDevice(devices.filter(e => {
-      //   if (e.id == id) return true
-      //   return false
-      // })[0])
-      devices = devices.filter(e => {
-        if (e.id != id) return true
-        removeTrack(e.track)
-        checkReassignment();
-        return false
-      })
-    }
+  res.send(JSON.stringify(response));
+  // if(MANAGER.trackPreview.id < d.track.id){
+  //   // response = {reassign: true, track: MANAGER.track}
+  // }
 
-    function checkReassignment() {
-      let missing = MANAGER.trackPreview
-      if(missing.id < tracks.length){
-      }
-    }
+})
 
-    function setTargetForReassignFromDevice(d) {
-      console.log("setReass");
+function getDevice(id) {
+  // console.log("FINDING", devices.length, id);
+  return devices.find((e) => {
+    // console.log(e.id, id);
+    return e.id == id
+  })
+}
 
-      let missingTrack = d.track
+function removeTrack(t) {
+  let ft = tracks.find((e) => e.id == t.id)
+  // console.log("REMOVE ft", ft, t);
+  ft.istances--
+  console.log("Removing Track", t.title);
+}
 
-      // console.log("MISSING", missingTrack);
+function removeDevice(id) {
+  console.log("Removing Device", id);
+  // removeTrack();
+  // setTargetForReassignFromDevice(devices.filter(e => {
+  //   if (e.id == id) return true
+  //   return false
+  // })[0])
+  devices = devices.filter(e => {
+    if (e.id != id) return true
+    removeTrack(e.track)
+    checkReassignment();
+    return false
+  })
+}
 
-      let extraTrack = tracks.slice(missingTrack.id - 1).reduce((tot, el, i, arr) => {
-        if (tot.istances > el.istances) return tot
-        return el
-      })
+function checkReassignment() {
+  let missing = MANAGER.trackPreview
+  if (missing.id < tracks.length) {}
+}
 
-      let candidate = devices.find(e => {
-        // console.log(e, extraTrack)
-        e.track.id == extraTrack.id
-      })
+function setTargetForReassignFromDevice(d) {
+  console.log("setReass");
 
-      // candidate = devices[devices.length - 1]
+  let missingTrack = d.track
 
-      // console.log("CANDIDATE", candidate);
+  // console.log("MISSING", missingTrack);
 
-      if (candidate && candidate.track.id != missingTrack.length) {
-        console.log("reassigning");
-        reassignmentTargets.push(candidate.id)
-      }
-    }
+  let extraTrack = tracks.slice(missingTrack.id - 1).reduce((tot, el, i, arr) => {
+    if (tot.istances > el.istances) return tot
+    return el
+  })
 
-    function setTargetForReassign() {
-      //TODO: più tracce rimosse alla volta
-      console.log("setReass");
+  let candidate = devices.find(e => {
+    // console.log(e, extraTrack)
+    e.track.id == extraTrack.id
+  })
 
-      let missingTrack = tracks.reduceRight((tot, el, i, arr) => {
-        if (tot.istances > el.istances) return el
-        return tot
-      })
+  // candidate = devices[devices.length - 1]
 
-      // console.log("MISSING", missingTrack);
+  // console.log("CANDIDATE", candidate);
 
-      let extraTrack = tracks.slice(missingTrack.id - 1).reduce((tot, el, i, arr) => {
-        if (tot.istances > el.istances) return tot
-        return el
-      })
+  if (candidate && candidate.track.id != missingTrack.length) {
+    console.log("reassigning");
+    reassignmentTargets.push(candidate.id)
+  }
+}
 
-      let candidate = devices.find(e => {
-        // console.log(e, extraTrack)
-        e.track.id == extraTrack.id
-      })
+function setTargetForReassign() {
+  //TODO: più tracce rimosse alla volta
+  console.log("setReass");
 
-      // candidate = devices[devices.length - 1]
+  let missingTrack = tracks.reduceRight((tot, el, i, arr) => {
+    if (tot.istances > el.istances) return el
+    return tot
+  })
 
-      // console.log("CANDIDATE", candidate);
+  // console.log("MISSING", missingTrack);
 
-      if (!candidate || candidate.track.id == missingTrack.length) {
-        reassignmentTargetId = null
-      } else {
-        console.log("reassigning");
-        reassignmentTargetId = candidate.id
-      }
-    }
+  let extraTrack = tracks.slice(missingTrack.id - 1).reduce((tot, el, i, arr) => {
+    if (tot.istances > el.istances) return tot
+    return el
+  })
 
-    // var waiting = false
-    // function checkForMissingTrack() {
-    //   if(waiting) return
-    //   //Get missing track
-    //   let missing = MANAGER.trackPreview
-    //   //Check if missing track is last
-    //   if(missing.id < tracks.length-1) {
-    //     let notLast = missing.istances < tracks.find(el=> e.id==missing.id+1)
-    //   }
-    //   if(!last) {waiting=false; return}
+  let candidate = devices.find(e => {
+    // console.log(e, extraTrack)
+    e.track.id == extraTrack.id
+  })
 
-    //   //
+  // candidate = devices[devices.length - 1]
 
-    // }
+  // console.log("CANDIDATE", candidate);
 
-    // setInterval(checkForMissingTrack, 10000)
+  if (!candidate || candidate.track.id == missingTrack.length) {
+    reassignmentTargetId = null
+  } else {
+    console.log("reassigning");
+    reassignmentTargetId = candidate.id
+  }
+}
 
+// var waiting = false
+// function checkForMissingTrack() {
+//   if(waiting) return
+//   //Get missing track
+//   let missing = MANAGER.trackPreview
+//   //Check if missing track is last
+//   if(missing.id < tracks.length-1) {
+//     let notLast = missing.istances < tracks.find(el=> e.id==missing.id+1)
+//   }
+//   if(!last) {waiting=false; return}
+
+//   //
+
+// }
+
+// setInterval(checkForMissingTrack, 10000)
