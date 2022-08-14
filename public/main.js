@@ -13,6 +13,7 @@ class Player {
         this.adjustTime = 2
         this.checkTime = 5000
         this.pinging = false
+        this.playing = false
     }
 
     set start(t) {
@@ -60,6 +61,8 @@ class Player {
 
         this.delay = data.delay
         // this.master = data.master;
+        this.pingSetup(this.pinging)
+        this.pinging = true
         this.checkReady()
     }
 
@@ -75,6 +78,7 @@ class Player {
         $(this.player).prop("muted", false);
 
         this.player.play()
+        this.playing = true
         this.time = Date.now() - this.start
         // this.player.play()
         // setTimeout(() =>{
@@ -149,10 +153,13 @@ class Player {
                 // $("#playBtn").attr("disabled", false)
                 console.log("CRISTO", (Date.now() - p.start + p._delay) / 1000);
                 p.currentTime = (Date.now() - p.start + p._delay) / 1000
-                // try{
-                //     p.play()
-                // } catch(err) {}
-                enableBegin()
+                if(this.playing){
+                    try{
+                        p.play()
+                    } catch(err) {}
+                } else {
+                    enableBegin()
+                }
             } else {
                 console.log("NOT READY", p.player.readyState);
                 p.checkReady();
