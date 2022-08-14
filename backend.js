@@ -210,6 +210,14 @@ app.post('/volume', (req, res) => {
 app.post('/ping', (req, res) => {
   // console.log(req.body);
   let id = req.body.id
+  if(id == -1 ){
+    let response = {
+      reassign: false,
+      error: false
+    }
+    res.send(JSON.stringify(response));
+    return true
+  }
   // console.log("PING FROM", id, devices.length);
   let d = getDevice(id)
   if(d == undefined) {

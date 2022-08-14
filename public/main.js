@@ -186,7 +186,7 @@ class Player {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    id: this.id
+                    id: this.id ? this.id : -1
                 })
             }))
         })
@@ -244,8 +244,8 @@ async function setup() {
     console.log("Setup");
     await getAllTracks();
     // await track();
-    await startTrack()
     await time();
+    await startTrack()
     // p.player.play()
     // p.play()
     // loadOut();
