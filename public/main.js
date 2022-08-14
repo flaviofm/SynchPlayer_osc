@@ -87,13 +87,21 @@ class Player {
         this.pinging = true
     }
 
-    async fadeIn(f = ()=>{console.log("faded in")}){
+    async fadeIn(f = () => {
+        console.log("faded in")
+    }) {
         console.log("f in")
-        $(this).animate({volume: this.master}, 3000, f);
+        $(this).animate({
+            volume: this.master
+        }, 3000, f);
     }
-    async fadeOut(f = ()=>{console.log("faded out")}){
+    async fadeOut(f = () => {
+        console.log("faded out")
+    }) {
         console.log("f out")
-        $(this).animate({volume: 0}, 3000, f);
+        $(this).animate({
+            volume: 0
+        }, 3000, f);
     }
 
     stop() {
@@ -141,7 +149,10 @@ class Player {
                 // $("#playBtn").attr("disabled", false)
                 console.log("CRISTO", (Date.now() - p.start + p._delay) / 1000);
                 p.currentTime = (Date.now() - p.start + p._delay) / 1000
-                p.play()
+                // try{
+                //     p.play()
+                // } catch(err) {}
+                enableBegin()
             } else {
                 console.log("NOT READY", p.player.readyState);
                 p.checkReady();
@@ -157,7 +168,7 @@ class Player {
     async ping() {
         return new Promise(async (s, e) => {
             //TIMEOUT FETCH
-            setTimeout(() =>{
+            setTimeout(() => {
                 e("DISCONNESSO");
             }, this.pingTimeout)
             //SUCCESS FETCH
@@ -175,21 +186,21 @@ class Player {
     }
 
     async pingSetup(p) {
-        if(p) return false
+        if (p) return false
         console.log("PINGING", this.id);
-        let res = await this.ping().catch(err=>{
+        let res = await this.ping().catch(err => {
             console.log(err);
             console.log("TIMEOUT DISCONNESSO");
             location.reload();
             return
         })
         res = await res.json()
-        if(res.error) {
+        if (res.error) {
             console.log("DISCONNESSO");
             location.reload();
             return
         }
-        if(res.reassign) {
+        if (res.reassign) {
             console.log("REASSIGNING", res.track);
             //TODO: fade in 5/6 secondi -> 2 out e 4 in
             await this.fadeOut()
@@ -207,17 +218,30 @@ class Player {
 }
 var s;
 var p = new Player();
+p.autoplaying = true
 
 let tracks = [];
 
+
+document.getElementById("setup").classList.add("disabled")
+setup()
+
+function enableBegin() {
+    document.getElementById("setup").classList.remove("disabled")
+    document.getElementById("setup").addEventListener("click", () => {
+        p.play()
+        loadOut()
+    })
+}
 async function setup() {
     console.log("Setup");
     await getAllTracks();
     // await track();
     await startTrack()
     await time();
+    // p.player.play()
     // p.play()
-    loadOut();
+    // loadOut();
 }
 
 
