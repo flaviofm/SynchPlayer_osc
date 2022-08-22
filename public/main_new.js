@@ -13,6 +13,8 @@ class Player {
 
         this.playing = false
 
+        this.duration = 1188.8848979591837 * 1000 //ms durata
+
 
     }
 
@@ -85,6 +87,7 @@ class Player {
         //CHECK TIME
         console.log(this.startTime);
         let checkTime = Date.now() - this.startTime
+        if(checkTime > this.duration) {checkTime-=this.duration}
         if (checkTime > (this.player.currentTime*1000) + this.delay + CONTROLLER.adjustTime || checkTime < (this.player.currentTime*1000) + this.delay - CONTROLLER.adjustTime) {
             console.log("Adjusting", checkTime, this.player.currentTime, this.delay, CONTROLLER.adjustTime);
             this.time = checkTime
@@ -126,6 +129,7 @@ class Controller {
             this.player.track = res.d.track
             this.id = res.d.id;
             this.player.startTime = res.t
+            console.log("Start time", this.player.startTime);
             this.ping()
             this.pinging = true
             //TODO this.start()

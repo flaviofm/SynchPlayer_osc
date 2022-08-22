@@ -57,9 +57,9 @@ class Manager {
     constructor() {
 
         //SERVER
+        this.duration = 1188.8848979591837 * 1000 //ms durata
         this._startTime = Date.now()
         this.pingTimeoutTime = 5000
-        this.duration = 1188.8848979591837 * 1000 //ms durata
 
         this._tracks = [
             new Track(0, 'ANuovo', 'ANuovo.mp3'),
@@ -109,10 +109,11 @@ class Manager {
 
 
     get time() {
-        let d = Date.now() - this._startTime
-        if (d > this.duration) {
-            this._startTime = this._startTime + this.duration
-        }
+        // let d = Date.now() - this._startTime + (this.duration- 2000)
+        // if (d > this.duration) {
+        //     console.log("LOOP");
+        //     this._startTime += this.duration
+        // }
         console.log("Giving ", this._startTime);
         return this._startTime
     }
