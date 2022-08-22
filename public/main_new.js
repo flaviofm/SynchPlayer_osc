@@ -129,6 +129,7 @@ class Controller {
             this.ping()
             this.pinging = true
             //TODO this.start()
+            enableBegin()
         })
     }
 
