@@ -80,6 +80,7 @@ class Player {
 
     checkup() {
         if(!this.playing) return
+        if(this.player.paused) this.player.play()
         //CHECK MASTER
         //TODO: check master
         // if(this.master != this.player.volume)
