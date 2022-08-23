@@ -150,6 +150,7 @@ class Controller {
     }
 
     ping() {
+        if(!this.pinging) return false
         console.log("ping");
         clearTimeout(this.interval)
         fetch('/ping', {
@@ -187,9 +188,10 @@ class Controller {
     timeoutPing() {
         clearInterval(this.interval)
         this.interval = window.setTimeout(() => {
-            alert("PING FALLITO")
-            //TODO: non reaload ma tenta di riconnetterti
-            location.reload()
+            document.getElementById("check").innerHTML = "Ping Fallito"
+            this.pinging = false
+            //TODO: non reaload ma vai avanti fino alla fine e poi riconnetti
+            // location.reload()
         }, this.pingTimeout)
     }
 }
