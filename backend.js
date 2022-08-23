@@ -60,7 +60,7 @@ class Manager {
         this.duration = 1188.8848979591837 * 1000 //ms durata
         this._startTime = Date.now()
         // this._original_startTime = this._startTime
-        this.pingTimeoutTime = 5000
+        this.pingTimeoutTime = 15000
 
         this._tracks = [
             new Track(0, 'ANuovo', 'ANuovo.mp3'),

@@ -119,8 +119,8 @@ class Controller {
     id = -1
     player = new Player()
     interval = 0
-    pingTime = 1000
-    pingTimeout = 7500
+    pingTime = 5000
+    pingTimeout = 15000
     checkTime = 5000
     adjustTime = 4000
     pinging = false
@@ -185,7 +185,12 @@ class Controller {
     }
 
     timeoutPing() {
-        this.interval = window.setTimeout(() => {}, this.pingTimeout)
+        clearInterval(this.interval)
+        this.interval = window.setTimeout(() => {
+            alert("PING FALLITO")
+            //TODO: non reaload ma tenta di riconnetterti
+            location.reload()
+        }, this.pingTimeout)
     }
 }
 
