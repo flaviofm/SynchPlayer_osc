@@ -59,6 +59,7 @@ class Manager {
         //SERVER
         this.duration = 1188.8848979591837 * 1000 //ms durata
         this._startTime = Date.now()
+        // this._original_startTime = this._startTime
         this.pingTimeoutTime = 5000
 
         this._tracks = [
@@ -109,11 +110,7 @@ class Manager {
 
 
     get time() {
-        // let d = Date.now() - this._startTime + (this.duration- 2000)
-        // if (d > this.duration) {
-        //     console.log("LOOP");
-        //     this._startTime += this.duration
-        // }
+        // if(this._startTime + this.duration < Date.now()) {this._startTime += duration}
         console.log("Giving ", this._startTime);
         return this._startTime
     }

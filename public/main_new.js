@@ -88,7 +88,7 @@ class Player {
         //CHECK TIME
         console.log(this.startTime);
         let checkTime = Date.now() - this.startTime
-        if(checkTime > this.duration) {checkTime-=this.duration}
+        if(checkTime > this.duration) {this.startTime+=this.duration}
         if (checkTime > (this.player.currentTime*1000) + this.delay + CONTROLLER.adjustTime || checkTime < (this.player.currentTime*1000) + this.delay - CONTROLLER.adjustTime) {
             console.log("Adjusting", checkTime, this.player.currentTime, this.delay, CONTROLLER.adjustTime);
             this.time = checkTime
