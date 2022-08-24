@@ -165,7 +165,7 @@ class Controller {
         }).then(res => res.json()).then((res) => {
             //CHECKUP
             if (res.error) {
-                alert("DISPOSITIVO RIMOSSO DAL SERVER")
+                // alert("DISPOSITIVO RIMOSSO DAL SERVER")
                 location.reload()
                 return
             }
