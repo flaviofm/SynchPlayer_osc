@@ -122,7 +122,7 @@ class Controller {
     pingTime = 5000
     pingTimeout = 15000
     checkTime = 5000
-    adjustTime = 4000
+    adjustTime = 2000
     pinging = false
 
     constructor() {
