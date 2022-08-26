@@ -119,7 +119,7 @@ class Controller {
     id = -1
     player = new Player()
     interval = 0
-    pingTime = 5000
+    pingTime = 3000
     pingTimeout = 15000
     checkTime = 5000
     adjustTime = 4000
@@ -150,7 +150,7 @@ class Controller {
     }
 
     ping() {
-        if(!this.pinging) return false
+        // if(!this.pinging) {console.log("not pinging"); return false}
         console.log("ping");
         clearTimeout(this.interval)
         fetch('/ping', {
