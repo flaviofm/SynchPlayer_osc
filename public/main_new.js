@@ -119,7 +119,7 @@ class Controller {
     id = -1
     player = new Player()
     interval = 0
-    pingTime = 3000
+    pingTime = 5000
     pingTimeout = 15000
     checkTime = 5000
     adjustTime = 4000
