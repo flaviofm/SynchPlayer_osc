@@ -13,7 +13,8 @@ class Player {
 
         this.playing = false
 
-        this.duration = 1188.8848979591837 * 1000 //ms durata
+        // this.duration = 1188.8848979591837 * 1000 //ms durata
+        this.duration = 1200.024 * 1000 //ms durata
 
 
     }
