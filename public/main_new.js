@@ -9,7 +9,9 @@ class Player {
         this._track = undefined
         this._startTime = 0
 
-        this.fadeTime = 0
+        this.fadeInTime = 2000
+        this.fadeOutTime = 2000
+        this.fadeLoadingWaitTime = 2000
 
         this.playing = false
 
@@ -30,16 +32,20 @@ class Player {
     set track(track) {
         if (this._track != undefined) {
             console.log(this._track);
-            this.fadeOut().then(() => {
+            fadeOutAudio(() => {
+                console.log("CHANGING TRACK");
                 $(this.player).attr("src", 'tracks/' + track.src);
-                this.fadeIn()
+                $("#track").val(track.src)
+                $("#trackH3").html(track.src)
+                setTimeout(fadeInAudio, this.fadeLoadingWaitTime)
             })
         } else {
+            console.log("CHANGING UNDEFINED");
             $(this.player).attr("src", 'tracks/' + track.src);
+            $("#track").val(track.src)
+            $("#trackH3").html(track.src)
         }
         this._track = track
-        $("#track").val(track.src)
-        $("#trackH3").html(track.src)
     }
 
     get track() {
@@ -47,7 +53,7 @@ class Player {
     }
 
     set time(time) {
-        console.log(this.player);
+        // console.log(this.player);
         this.player.currentTime = time / 1000
     }
 
@@ -61,7 +67,7 @@ class Player {
     }
 
     get master() {
-        console.log(this.track);
+        // console.log(this.track);
         return this.track._volume
     }
 
@@ -80,39 +86,45 @@ class Player {
     }
 
     checkup() {
-        if(!this.playing) return
-        if(this.player.paused) this.player.play()
+        if (!this.playing) return
+        if (this.player.paused) this.player.play()
         //CHECK MASTER
         //TODO: check master
         // if(this.master != this.player.volume)
 
         //CHECK TIME
-        console.log(this.startTime);
+        // console.log(this.startTime);
         let checkTime = Date.now() - this.startTime
-        if(checkTime > this.duration) {this.startTime+=this.duration}
-        if (checkTime > (this.player.currentTime*1000) + this.delay + CONTROLLER.adjustTime || checkTime < (this.player.currentTime*1000) + this.delay - CONTROLLER.adjustTime) {
+        if (checkTime > this.duration) {
+            this.startTime += this.duration
+        }
+        if (checkTime > (this.player.currentTime * 1000) + this.delay + CONTROLLER.adjustTime || checkTime < (this.player.currentTime * 1000) + this.delay - CONTROLLER.adjustTime) {
             console.log("Adjusting", checkTime, this.player.currentTime, this.delay, CONTROLLER.adjustTime);
             this.time = checkTime
         }
     }
 
-    async fadeIn(f = () => {
-        console.log("faded in")
-    }) {
-        console.log("f in")
-        $(this.player).animate({
-            //TODO: ERRORE this.master ha valori strani
-            volume: this.master/100
-        }, this.fadeTime, f);
-    }
-    async fadeOut(f = () => {
-        console.log("faded out")
-    }) {
-        console.log("f out")
-        $(this.player).animate({
-            volume: 0
-        }, this.fadeTime, f);
-    }
+
+
+    // async fadeIn(f = () => {
+    //     console.log("faded in")
+    // }) {
+    //     console.log("f in")
+    //     $(this.player).animate({
+    //         //TODO: ERRORE this.master ha valori strani
+    //         volume: this.master/100
+    //     }, this.fadeTime, f);
+    // }
+
+
+    // async fadeOut(f = () => {
+    //     console.log("faded out")
+    // }) {
+    //     console.log("f out")
+    //     $(this.player).animate({
+    //         volume: 0
+    //     }, this.fadeTime, f);
+    // }
 }
 
 
@@ -152,7 +164,7 @@ class Controller {
 
     ping() {
         // if(!this.pinging) {console.log("not pinging"); return false}
-        console.log("ping");
+        // console.log("ping");
         clearTimeout(this.interval)
         fetch('/ping', {
             method: "POST",
@@ -171,7 +183,12 @@ class Controller {
                 return
             }
             if (res.reassign) {
+                // fadeOutAudio(()=>{
+                //     this.player.track = res.reassign
+                //     fadeInAudio();
+                // })
                 this.player.track = res.reassign
+
             }
 
             this.player.checkup()
@@ -215,3 +232,25 @@ function enableBegin() {
 
 document.getElementById("setup").classList.add("disabled")
 const CONTROLLER = new Controller()
+
+
+
+function fadeOutAudio(f = () => {
+    console.log("END FO 3")
+}) {
+    console.log("START FO 3");
+    $(CONTROLLER.player.player).animate({
+        volume: 0
+    }, CONTROLLER.player.fadeOutTime, f);
+
+
+}
+
+function fadeInAudio(f = () => {
+    console.log("END FI 3")
+}) {
+    console.log("START FI 3");
+    $(CONTROLLER.player.player).animate({
+        volume: CONTROLLER.player.master / 100
+    }, CONTROLLER.player.fadeInTime, f)
+}

@@ -3,12 +3,14 @@ html {
 }
 
 body {
+    font-family: degular, sans-serif;
     margin: 0;
     overflow: hidden;
     width: 100vw;
     height: 100vh;
     position: relative;
-    background-color: #7FB6C7;
+    background-color: #000;
+    backface-visibility: hidden;
 
     color: white;
 }
@@ -28,32 +30,48 @@ h1 {
     margin-bottom: 20px;
 }
 
-h1 b:nth-of-type(1){
-    animation-delay: 0;
+h1 b {
+    /* filter: blur(20px);
+    opacity: 0; */
+    display: inline-block;
+    letter-spacing: -0.3rem;
+
+
+    text-shadow: 0 0 0 whitesmoke;
+    animation: smoky 3s both;
+    /* animation: textFadeIn 1200ms 1 forwards ease; */
 }
-h1 b:nth-of-type(2){
-    animation-delay: 100ms;
+
+h1 b:nth-child(even) {
+    animation-name: smoky-mirror;
 }
-h1 b:nth-of-type(3){
-    animation-delay: 200ms;
-}
-h1 b:nth-of-type(4){
-    animation-delay: 300ms;
-}
-h1 b:nth-of-type(5){
+
+
+h1 b:nth-of-type(1) {
     animation-delay: 400ms;
 }
-h1 b:nth-of-type(6){
+
+h1 b:nth-of-type(2) {
     animation-delay: 500ms;
 }
 
-
-b {
-    filter: blur(20px);
-    opacity: 0;
-    letter-spacing:-0.3rem;
-    animation: textFadeIn 1200ms 1 forwards ease;
+h1 b:nth-of-type(3) {
+    animation-delay: 600ms;
 }
+
+h1 b:nth-of-type(4) {
+    animation-delay: 700ms;
+}
+
+h1 b:nth-of-type(5) {
+    animation-delay: 800ms;
+}
+
+h1 b:nth-of-type(6) {
+    animation-delay: 900ms;
+}
+
+
 
 
 h2 {
@@ -96,6 +114,7 @@ h3 {
     opacity: 0;
     animation: fadeInLogo 600ms ease forwards 350ms;
 }
+
 #circle {
     transform-origin: bottom right;
     animation: circle 400ms ease forwards;
@@ -105,6 +124,7 @@ h3 {
     from {
         transform: rotate(-90deg);
     }
+
     to {
         transform: rotate(0deg);
     }
@@ -114,21 +134,24 @@ h3 {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 0;
     }
-    
+
 }
+
 @keyframes fadeInLogo {
     from {
         filter: blur(20px);
         opacity: 0;
     }
+
     to {
         filter: blur(0);
         opacity: 1;
     }
-    
+
 }
 
 @keyframes textFadeIn {
@@ -137,9 +160,55 @@ h3 {
         opacity: 1;
         filter: blur(20px);
     }
+
     to {
         transform: rotate(0) translateY(0);
         opacity: 1;
         filter: blur(0);
+    }
+}
+
+@keyframes smoky {
+    from {
+        transform:
+            translate3d(-15rem, 8rem, 0) rotate(40deg) skewX(-70deg) scale(1.5);
+        text-shadow: 0 0 20px whitesmoke;
+        opacity: 0;
+        filter: blur(20px);
+    }
+
+    66% {
+        filter: blur(20px);
+    }
+
+    to {
+        text-shadow: 0 0 0px whitesmoke;
+        transform:
+            translate3d(0, 0, 0) rotate(0) skewX(0) scale(1);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes smoky-mirror {
+
+    from {
+        transform:
+            translate3d(-18rem, 8rem, 0) rotate(40deg) skewX(70deg) scale(2);
+        text-shadow: 0 0 20px whitesmoke;
+        filter: blur(20px);
+        opacity: 0;
+    }
+
+    66% {
+        filter: blur(20px);
+    }
+
+    to {
+        text-shadow: 0 0 0px whitesmoke;
+        transform:
+            translate3d(0, 0, 0) rotate(0) skewX(0) scale(1);
+        filter: blur(0);
+        opacity: 1;
     }
 }

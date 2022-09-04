@@ -66,6 +66,7 @@ class Manager {
 
         this._tracks = [
             // new Track(0, 'A', 'A mixato.mp3'),
+            // new Track(0, 'metronome', 'metronome.mp3'),
             new Track(1, 'B', 'B.mp3'),
             new Track(2, 'Cbit', 'Cbit.mp3'),
             new Track(3, 'Dbit', 'Dbit.mp3'),
@@ -227,6 +228,11 @@ app.get('/setup', (req, res) => {
     delete data.d.pingTimeout
     console.log(data);
     res.send(JSON.stringify(data))
+})
+
+//TODO:CHECKOUT THIS
+app.get('/time', (req, res) => {
+    res.send(MANAGER._startTime)
 })
 
 app.post('/ping', (req, res) => {
