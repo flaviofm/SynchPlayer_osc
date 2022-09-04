@@ -205,7 +205,7 @@ class Controller {
             }, this.pingTime)
         }).catch(()=>{
             console.log("Catch")
-            location.reload()
+            // location.reload()
         })
     }
 
@@ -215,7 +215,7 @@ class Controller {
             document.getElementById("check").innerHTML = "Ping Fallito"
             this.pinging = false
             //TODO: non reaload ma vai avanti fino alla fine e poi riconnetti
-            location.reload()
+            // location.reload()
         }, this.pingTimeout)
     }
 }
