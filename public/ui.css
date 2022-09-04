@@ -1,0 +1,145 @@
+html {
+    font-size: 30px;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-color: #7FB6C7;
+
+    color: white;
+}
+
+#overlay {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/*TESTI*/
+h1 {
+    margin-left: 20px;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+h1 b:nth-of-type(1){
+    animation-delay: 0;
+}
+h1 b:nth-of-type(2){
+    animation-delay: 100ms;
+}
+h1 b:nth-of-type(3){
+    animation-delay: 200ms;
+}
+h1 b:nth-of-type(4){
+    animation-delay: 300ms;
+}
+h1 b:nth-of-type(5){
+    animation-delay: 400ms;
+}
+h1 b:nth-of-type(6){
+    animation-delay: 500ms;
+}
+
+
+b {
+    filter: blur(20px);
+    opacity: 0;
+    letter-spacing:-0.3rem;
+    animation: textFadeIn 1200ms 1 forwards ease;
+}
+
+
+h2 {
+    margin-left: 20px;
+    color: black;
+    font-size: .8rem;
+}
+
+
+h3 {
+    color: white;
+    font-weight: normal;
+    font-size: .6rem;
+    margin: 0px 20px;
+}
+
+
+
+/*WRAPPER*/
+
+#logoWrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 79%;
+    height: auto;
+}
+
+#logoWrapper img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all .3s ease;
+}
+
+
+#logo {
+    opacity: 0;
+    animation: fadeInLogo 600ms ease forwards 350ms;
+}
+#circle {
+    transform-origin: bottom right;
+    animation: circle 400ms ease forwards;
+}
+
+@keyframes circle {
+    from {
+        transform: rotate(-90deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes fadeDelay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0;
+    }
+    
+}
+@keyframes fadeInLogo {
+    from {
+        filter: blur(20px);
+        opacity: 0;
+    }
+    to {
+        filter: blur(0);
+        opacity: 1;
+    }
+    
+}
+
+@keyframes textFadeIn {
+    from {
+        transform: rotate(-45deg) translateY(200px);
+        opacity: 1;
+        filter: blur(20px);
+    }
+    to {
+        transform: rotate(0) translateY(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}

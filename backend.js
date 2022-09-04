@@ -52,6 +52,7 @@ class Device {
         }, MANAGER.pingTimeoutTime)
     }
 }
+
 class Manager {
 
     constructor() {
@@ -64,7 +65,7 @@ class Manager {
         this.pingTimeoutTime = 15000
 
         this._tracks = [
-            new Track(0, 'A', 'A mixato.mp3'),
+            // new Track(0, 'A', 'A mixato.mp3'),
             new Track(1, 'B', 'B.mp3'),
             new Track(2, 'Cbit', 'Cbit.mp3'),
             new Track(3, 'Dbit', 'Dbit.mp3'),
