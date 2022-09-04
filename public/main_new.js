@@ -9,7 +9,7 @@ class Player {
         this._track = undefined
         this._startTime = 0
 
-        this.fadeInTime = 2000
+        this.fadeInTime = 4000
         this.fadeOutTime = 2000
         this.fadeLoadingWaitTime = 2000
 
