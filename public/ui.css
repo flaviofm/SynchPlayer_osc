@@ -1,15 +1,20 @@
+@font-face {
+    font-family: "Degular";
+    src: url("./res/fonts/degular-regular.otf") format("otf"),
+}
+
 html {
     font-size: 30px;
 }
 
 body {
-    font-family: degular, sans-serif;
+    font-family: Degular, sans-serif;
     margin: 0;
     overflow: hidden;
     width: 100vw;
     height: 100vh;
     position: relative;
-    background-color: #000;
+    background-color: #7FB6C7;
     backface-visibility: hidden;
 
     color: white;
@@ -24,17 +29,33 @@ body {
 
 
 /*TESTI*/
+h1,
+h2,
+h3,
+b {
+    font-weight: normal;
+
+}
+
 h1 {
     margin-left: 20px;
     font-size: 1.6rem;
     margin-bottom: 20px;
 }
 
+h2 {
+    text-transform: uppercase;
+}
+
 h1 b {
-    /* filter: blur(20px);
-    opacity: 0; */
+
     display: inline-block;
     letter-spacing: -0.3rem;
+}
+
+.smoky b {
+    /* filter: blur(20px);
+    opacity: 0; */
 
 
     text-shadow: 0 0 0 whitesmoke;
@@ -42,12 +63,12 @@ h1 b {
     /* animation: textFadeIn 1200ms 1 forwards ease; */
 }
 
-h1 b:nth-child(even) {
+.smoky b:nth-child(even) {
     animation-name: smoky-mirror;
 }
 
 
-h1 b:nth-of-type(1) {
+.smoky b:nth-of-type(1) {
     animation-delay: 400ms;
 }
 
@@ -55,19 +76,19 @@ h1 b:nth-of-type(2) {
     animation-delay: 500ms;
 }
 
-h1 b:nth-of-type(3) {
+.smoky b:nth-of-type(3) {
     animation-delay: 600ms;
 }
 
-h1 b:nth-of-type(4) {
+.smoky b:nth-of-type(4) {
     animation-delay: 700ms;
 }
 
-h1 b:nth-of-type(5) {
+.smoky b:nth-of-type(5) {
     animation-delay: 800ms;
 }
 
-h1 b:nth-of-type(6) {
+.smoky b:nth-of-type(6) {
     animation-delay: 900ms;
 }
 

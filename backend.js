@@ -68,6 +68,7 @@ class Manager {
             // new Track(0, 'A', 'A mixato.mp3'),
             // new Track(0, 'metronome', 'metronome.mp3'),
             new Track(1, 'B', 'B.mp3'),
+            new Track(45, 'voce scomposta', 'voce scomposta.mp3'),
             new Track(2, 'Cbit', 'Cbit.mp3'),
             new Track(3, 'Dbit', 'Dbit.mp3'),
             new Track(4, 'E', 'E.mp3'),
