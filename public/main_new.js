@@ -165,7 +165,10 @@ class Controller {
     ping() {
         // if(!this.pinging) {console.log("not pinging"); return false}
         // console.log("ping");
-        clearTimeout(this.interval)
+
+
+
+        // clearTimeout(this.interval)
         fetch('/ping', {
             method: "POST",
             headers: {
@@ -200,6 +203,9 @@ class Controller {
             window.setTimeout(() => {
                 this.ping()
             }, this.pingTime)
+        }).catch(()=>{
+            console.log("Catch")
+            location.reload()
         })
     }
 
@@ -209,7 +215,7 @@ class Controller {
             document.getElementById("check").innerHTML = "Ping Fallito"
             this.pinging = false
             //TODO: non reaload ma vai avanti fino alla fine e poi riconnetti
-            // location.reload()
+            location.reload()
         }, this.pingTimeout)
     }
 }
