@@ -218,9 +218,9 @@ app.use(bodyParser.json());
 app.listen(port, () => {
     console.log(`Synch Server Time listening on port ${port}`)
 })
-app.get('/', (req, res) => {
-    res.render('public/index.html')
-})
+// app.get('/', (req, res) => {
+//     res.render('public/index.html')
+// })
 
 //API
 app.get('/setup', (req, res) => {

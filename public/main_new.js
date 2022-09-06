@@ -182,7 +182,8 @@ class Controller {
             //CHECKUP
             if (res.error) {
                 // alert("DISPOSITIVO RIMOSSO DAL SERVER")
-                location.reload()
+                $("#log").html("PING FAILED")
+                // location.reload()
                 return
             }
             if (res.reassign) {
@@ -231,6 +232,7 @@ function loadIn() {
 function enableBegin() {
     document.getElementById("setup").classList.remove("disabled")
     document.getElementById("setup").addEventListener("click", () => {
+        uiStart();
         CONTROLLER.start()
         loadOut()
     })

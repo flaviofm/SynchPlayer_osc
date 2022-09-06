@@ -5,46 +5,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synch Device Time</title>
-
-    <link rel="stylesheet" href="style.css?v6">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://use.typekit.net/tbb6ryu.css"> -->
+    <link rel="stylesheet" href="ui.css">
 </head>
 
 <body>
-    <div id="loading">Loading
-        <button id="setup">BEGIN</button>
-    </div>
-    <div id="playOverlay">
-
-        <section id="frontend">
-            <!-- <select name="track" id="track" onchange="p.track = this.value">
-                <option value='{"src": "Tracce/metronome.mp3", "id": 0}' selected>Metronomo</option>
-            </select> -->
-            <!-- <button id="playBtn" onclick="p.play()" disabled>Play</button> -->
-
-
-            <div id="underlay">
-                <audio id="audio" preload="metadata" controls loop preload>
-                    <!--<source src="http://francescoflaviomartinelli.com/SynchServerTime/metronome.mp3#t=0.1" type="audio/mpeg">-->
-                </audio>
-                <h1 id="trackH3"></h1>
-                <h1 id="date"></h1>
-                <h1 id="delay"></h1>
-                <h1 id="check"></h1>
-                <h1 id="tempo"></h1>
-                <h1 id="masterInput"></h1>
-            </div>
-
-        </section>
+    <!-- <audio id="audio" preload="metadata" controls loop preload></audio> -->
+    <div id="audioWrapper">
+        <h1 id="trackH3"></h1>
+        <audio id="audio" controls preload="metadata"></audio>
+        <h5 id="log"></h5>
     </div>
 
 
-    <!-- <label for="masterInput">Master: <input min="0" max="100" type="number" name="masterInput" id="masterInput"
-            placeholder="" onchange="setMasterForTrack()"></label> -->
+    <section id="overlay">
+
+
+        <h1 class="smoky">
+            <b>án</b><b>em</b><b>os</b>
+        </h1>
+        <h2 class="artists">
+            <b>Edoardo Tresoldi</b>
+            <br>
+            <b>Studio Azzurro</b>
+            <br>
+            <b>Max Magaldi</b>
+        </h2>
+        <h3 id="cta">alza il volume e premi play</h3>
+        
+        <button id="setup" class="disabled">
+            <svg width="30px" height="30px" viewBox="0 0 490 490" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                <path
+                    d="M244.9 0C109.8 0 0 109.8 0 244.9C0 380 109.9 489.8 244.9 489.8C380 489.8 489.8 379.9 489.8 244.9C489.8 109.8 380 0 244.9 0ZM244.9 455.5C128.8 455.5 34.3 361 34.3 244.9C34.3 128.8 128.8 34.3 244.9 34.3C361 34.3 455.5 128.8 455.5 244.9C455.5 361 361 455.5 244.9 455.5Z"
+                    fill="black" />
+                <path
+                    d="M375.9 230.5L200.1 117.7C194.8 114.3 188.1 114.1 182.6 117.1C177.1 120.1 173.7 125.9 173.7 132.1V357.6C173.7 363.9 177.1 369.6 182.6 372.6C185.2 374 188 374.7 190.8 374.7C194 374.7 197.2 373.8 200.1 372L375.9 259.3C380.8 256.1 383.8 250.7 383.8 244.9C383.7 239.1 380.8 233.6 375.9 230.5ZM207.9 326.3V163.5L334.8 244.9L207.9 326.3Z"
+                    fill="black" />
+
+            </svg>
+
+        </button>
+
+        <img id="logo" src="res/LOGO_centered.png">
+        <!-- <div id="logoWrapper">
+            <img id="circle" src="res/CIRCLE.png"> 
+        </div>
+ -->
+
+    </section>
+
+
+
+
+    <script src='jquery.js'></script>
+    <script src="ui.js"></script>
+    <script src="main_new.js"></script>
+
 </body>
-
-<script src='jquery.js'></script>
-<!-- <script src="main.js"></script> -->
-<script src="main_new.js"></script>
 
 </html>

@@ -16,8 +16,41 @@ body {
     position: relative;
     background-color: #7FB6C7;
     backface-visibility: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 
     color: white;
+
+    transition: all 2s ease;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: .3;
+}
+
+#audio {
+    /*AUDIO*/
+    display: block;
+}
+
+#audioWrapper {
+    /* display: none; */
+    display: flex;
+
+    z-index: 999;
+    width: 100vw;
+    height: 30vh;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 
 #overlay {
@@ -38,19 +71,20 @@ b {
 }
 
 h1 {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     font-size: 1.6rem;
     margin-bottom: 20px;
 }
 
 h2 {
     text-transform: uppercase;
+    transition: all .3s ease;
 }
 
 h1 b {
 
     display: inline-block;
-    letter-spacing: -0.3rem;
+    letter-spacing: .1rem;
 }
 
 .smoky b {
@@ -59,7 +93,7 @@ h1 b {
 
 
     text-shadow: 0 0 0 whitesmoke;
-    animation: smoky 3s both;
+    animation: smoky 2s both;
     /* animation: textFadeIn 1200ms 1 forwards ease; */
 }
 
@@ -67,18 +101,29 @@ h1 b {
     animation-name: smoky-mirror;
 }
 
+.outAnim b {
+    animation-delay: 1000ms !important;
+    animation-name: smoky-out !important;
+}
+
+.outAnim b:nth-child(even) {
+    animation-name: smoky-mirror-out !important;
+}
+
 
 .smoky b:nth-of-type(1) {
-    animation-delay: 400ms;
+    animation-delay: 200ms;
 }
 
 h1 b:nth-of-type(2) {
-    animation-delay: 500ms;
+    animation-delay: 300ms;
 }
 
 .smoky b:nth-of-type(3) {
-    animation-delay: 600ms;
+    animation-delay: 400ms;
 }
+
+/* 
 
 .smoky b:nth-of-type(4) {
     animation-delay: 700ms;
@@ -90,13 +135,13 @@ h1 b:nth-of-type(2) {
 
 .smoky b:nth-of-type(6) {
     animation-delay: 900ms;
-}
+} */
 
 
 
 
 h2 {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     color: black;
     font-size: .8rem;
 }
@@ -106,7 +151,7 @@ h3 {
     color: white;
     font-weight: normal;
     font-size: .6rem;
-    margin: 0px 20px;
+    margin: 60px 20px 0;
 }
 
 
@@ -114,11 +159,9 @@ h3 {
 /*WRAPPER*/
 
 #logoWrapper {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 79%;
+    width: 19vw;
     height: auto;
+    position: relative;
 }
 
 #logoWrapper img {
@@ -132,13 +175,54 @@ h3 {
 
 
 #logo {
-    opacity: 0;
-    animation: fadeInLogo 600ms ease forwards 350ms;
+    margin-top: 80px;
+    justify-self: flex-end;
+    width: 29%;
+    /* opacity: 0; */
+    /* animation: fadeInLogo 600ms both 2700ms; */
 }
 
 #circle {
     transform-origin: bottom right;
     animation: circle 400ms ease forwards;
+}
+
+#setup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: solid 1px white; */
+    /* padding: 10px; */
+    position: relative;
+    /* border-radius: 50%; */
+    background: transparent;
+    border: none;
+    outline: none;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: opacity .4s ease;
+
+    opacity: 0;
+    animation: fadeInLogo 800ms ease forwards 3800ms;
+}
+
+#setup[disabled] {
+    opacity: .3;
+}
+
+#setup svg {
+    width: 90px;
+    height: 90px;
+}
+
+#setup svg path {
+    fill: white;
+}
+
+#cta {
+    text-shadow: 0 0 0 whitesmoke;
+    opacity: 0;
+    animation: fadeInLogo 1400ms both 3000ms
 }
 
 @keyframes circle {
@@ -169,6 +253,19 @@ h3 {
     }
 
     to {
+        filter: blur(0);
+        opacity: 1;
+    }
+
+}
+
+@keyframes fadeOutLogo {
+    to {
+        filter: blur(20px);
+        opacity: 0;
+    }
+
+    from {
         filter: blur(0);
         opacity: 1;
     }
@@ -232,4 +329,110 @@ h3 {
         filter: blur(0);
         opacity: 1;
     }
+}
+
+
+@keyframes smoky-out {
+    from {
+        text-shadow: 0 0 0px whitesmoke;
+        transform:
+            translate3d(0, 0, 0) rotate(0) skewX(0) scale(1);
+        filter: blur(0);
+        opacity: 1;
+    }
+
+    33% {
+        filter: blur(20px);
+    }
+
+    to {
+        transform:
+            translate3d(15rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
+        text-shadow: 0 0 20px whitesmoke;
+        opacity: 0;
+        filter: blur(20px);
+    }
+}
+
+@keyframes smoky-mirror-out {
+
+    from {
+        text-shadow: 0 0 0px whitesmoke;
+        transform:
+            translate3d(0, 0, 0) rotate(0) skewX(0) scale(1);
+        filter: blur(0);
+        opacity: 1;
+    }
+
+    33% {
+        filter: blur(20px);
+    }
+
+    to {
+        transform:
+            translate3d(18rem, -8rem, 0) rotate(-40deg) skewX(-70deg) scale(2);
+        text-shadow: 0 0 20px whitesmoke;
+        filter: blur(20px);
+        opacity: 0;
+    }
+
+}
+
+
+.artists b {
+    /* animation-delay: 2000ms; */
+
+    text-shadow: 0 0 0 whitesmoke;
+    animation: smoky 1.5s both;
+    /* animation: textFadeIn 1200ms 1 forwards ease; */
+}
+
+.artists b:nth-of-type(1) {
+    animation-delay: 1000ms
+}
+
+.artists b:nth-of-type(2) {
+    animation-delay: 1200ms
+}
+
+.artists b:nth-of-type(3) {
+    animation-delay: 1400ms
+}
+
+.artists.outAnim b {
+    animation-delay: 0ms !important;
+    animation-name: smoky-out !important;
+}
+
+/* .artists {
+    animation-name: smoky-mirror;
+} */
+
+#logo.outAnim {
+    animation: fadeOutLogo .5s both 0s;
+}
+
+@keyframes textChange {
+    from {
+        opacity: 1;
+        text-shadow: 0 0 0 whitesmoke;
+        filter: blur(0);
+    }
+
+    45%, 55% {
+        opacity: 0;
+        text-shadow: 0 0 20px whitesmoke;
+        filter: blur(20px);
+    }
+
+    to {
+        opacity: 1;
+        text-shadow: 0 0 0 whitesmoke;
+        filter: blur(0);
+    }
+}
+
+.change {
+    opacity: 1!important;
+    animation: textChange 3000ms both!important;
 }
