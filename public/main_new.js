@@ -5,6 +5,7 @@ class Player {
 
     constructor() {
         this.player = document.getElementById("audio")
+        this.player.volume = 0
         this.player.loop = true
         this._track = undefined
         this._startTime = 0
@@ -75,14 +76,21 @@ class Player {
         return this.track._delay
     }
 
-
     play() {
         console.log("PLAY");
         $("#underlay").addClass("active");
         $(this.player).prop("muted", false);
         this.player.play()
         this.playing = true
-        this.time = Date.now() - this.startTime
+
+        let checkTime = Date.now() - this.startTime
+        while(checkTime > this.duration) {
+            this.startTime += this.duration
+            checkTime -= Date.now() - this.startTime
+        }
+        this.time = checkTime
+        // this.time = Date.now() - this.startTime
+        // if(this.player.volume == 0) fadeInAudio()
     }
 
     checkup() {
@@ -95,12 +103,20 @@ class Player {
         //CHECK TIME
         // console.log(this.startTime);
         let checkTime = Date.now() - this.startTime
-        if (checkTime > this.duration) {
+        // if (checkTime > this.duration) {
+            //     this.startTime += this.duration
+            // }
+        while(checkTime > this.duration) {
             this.startTime += this.duration
+            checkTime -= this.duration
+        //  checkTime = Date.now() - this.startTime
         }
         if (checkTime > (this.player.currentTime * 1000) + this.delay + CONTROLLER.adjustTime || checkTime < (this.player.currentTime * 1000) + this.delay - CONTROLLER.adjustTime) {
+            // fadeOutAudio()
             console.log("Adjusting", checkTime, this.player.currentTime, this.delay, CONTROLLER.adjustTime);
             this.time = checkTime
+        } else {
+            if(this.player.volume == 0) fadeInAudio()
         }
     }
 
@@ -183,6 +199,7 @@ class Controller {
             if (res.error) {
                 // alert("DISPOSITIVO RIMOSSO DAL SERVER")
                 $("#log").html("PING FAILED")
+                this.errorFade()
                 // location.reload()
                 return
             }
@@ -206,6 +223,7 @@ class Controller {
             }, this.pingTime)
         }).catch(()=>{
             console.log("Catch")
+            this.errorFade()
             // location.reload()
         })
     }
@@ -213,11 +231,22 @@ class Controller {
     timeoutPing() {
         clearInterval(this.interval)
         this.interval = window.setTimeout(() => {
-            document.getElementById("check").innerHTML = "Ping Fallito"
+            document.getElementById("log").innerHTML = "Ping Timeout"
             this.pinging = false
             //TODO: non reaload ma vai avanti fino alla fine e poi riconnetti
-            location.reload()
+            // location.reload()
+            this.errorFade();
         }, this.pingTimeout)
+    }
+
+    errorFade(){
+        console.log("ERROR FADE OUT");
+        if(
+            this.player._track.title == "B"
+            || this.player._track.title == "Cbit"
+            || this.player._track.title == "Dbit"
+            || this.player._track.title == "E"
+        ) fadeOutAudio()
     }
 }
 

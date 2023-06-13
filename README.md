@@ -1,4 +1,0 @@
-# Anemos
-# Anemos
-# Anemos
-# Anemos
