@@ -85,7 +85,7 @@ class Manager {
         this.pingTimeoutTime = 15000
 
         this._tracks = [
-            // new Track(0, 'A', 'A mixato.mp3'),
+            new Track('A', 'A mixato.mp3'),
             // new Track(0, 'metronome', 'metronome.mp3'),
             new Track('B', 'B.mp3'),
             new Track('Cbit', 'Cbit.mp3'),
