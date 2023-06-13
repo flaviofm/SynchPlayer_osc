@@ -1,3 +1,4 @@
+console.log("V1");
 class Player {
 
 
