@@ -35,14 +35,14 @@ class Player {
             console.log(this._track);
             fadeOutAudio(() => {
                 console.log("CHANGING TRACK");
-                $(this.player).attr("src", track.src);
+                $(this.player).attr("src", 'https://github.com/flaviofm/Anemos/raw/main/public/tracks/' + track.src);
                 $("#track").val(track.src)
                 $("#trackH3").html(track.src)
                 setTimeout(fadeInAudio, this.fadeLoadingWaitTime)
             })
         } else {
             console.log("CHANGING UNDEFINED");
-            $(this.player).attr("src", track.src);
+            $(this.player).attr("src", 'https://github.com/flaviofm/Anemos/raw/main/public/tracks/' + track.src);
             $("#track").val(track.src)
             $("#trackH3").html(track.src)
         }
