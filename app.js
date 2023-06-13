@@ -332,11 +332,11 @@ app.post('/ping', (req, res) => {
     res.send(JSON.stringify(response))
 })
 
-app.get('/track/:name', (req, res) => {
-    const name = req.params.name
-    console.log("GETTING", name);
-    res.sendFile('./public/tracks/'+name)
-})
+// app.get('/tracks/:name', (req, res) => {
+//     const name = req.params.name
+//     console.log("GETTING", name);
+//     res.sendFile('./public/tracks/'+name)
+// })
 
 
 
