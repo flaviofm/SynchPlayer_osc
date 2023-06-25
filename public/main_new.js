@@ -1,4 +1,4 @@
-console.log("V1");
+console.log("V1.1");
 class Player {
 
 
@@ -201,6 +201,7 @@ class Controller {
                 // alert("DISPOSITIVO RIMOSSO DAL SERVER")
                 $("#log").html("PING FAILED")
                 this.errorFade()
+                console.log(res, res.error);
                 // location.reload()
                 return
             }
@@ -209,6 +210,7 @@ class Controller {
                 //     this.player.track = res.reassign
                 //     fadeInAudio();
                 // })
+                console.log("Reassign");
                 this.player.track = res.reassign
 
             }
