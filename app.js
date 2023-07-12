@@ -95,6 +95,7 @@ class Manager {
         //     countdown--
         // }, 1000)
         this._startTime = Date.now()
+        start_resolume()
         // this._original_startTime = this._startTime
         this.pingTimeoutTime = 15000
 
