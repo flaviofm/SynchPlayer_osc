@@ -1,3 +1,17 @@
+const startScene = require("./osc_client.js");
+
+
+function start_resolume() {
+    return startScene()
+      .then(() => {
+        console.log("Scene started!");
+      })
+      .catch((error) => {
+        console.error("Error starting scene:", error);
+      });
+}
+
+
 class Track {
     constructor(title, src) {
         this._istances = 0
@@ -340,4 +354,5 @@ app.post('/serverTimePlay', (req, res) => {
     let time = req.body.time
     console.log("PLAY TIME", time);
     MANAGER._startTime = time
+    start_resolume()
 });
