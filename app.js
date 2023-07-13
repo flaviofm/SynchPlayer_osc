@@ -82,7 +82,8 @@ class Manager {
 
         //SERVER
         // this.duration = 1188.8848979591837 * 1000 //ms durata
-        this.duration = 1200.024 * 1000 //ms durata
+        // this.duration = 1200.024 * 1000 //ms durata
+        this.duration = 750.0016 * 1000 //ms durata
         //COUNTDOWN
         // let countdown = 3
         // let ctdInterval = setInterval(()=>{
@@ -95,7 +96,7 @@ class Manager {
         //     }
         //     countdown--
         // }, 1000)
-        this._startTime = Date.now()
+        this._startTime = Date.now() 
         start_resolume()
         // this._original_startTime = this._startTime
         this.pingTimeoutTime = 15000
@@ -202,123 +203,7 @@ class Manager {
         // ]
 
         this._tracks = [
-            new Track('A', 'A mixato.mp3'),
-            // new Track(0, 'metronome', 'metronome.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            // new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('C1', 'C1.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P1', 'P1.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P1', 'P1.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P1', 'P1.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P1', 'P1.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P1', 'P1.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('P2', 'P2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3'),
-            new Track('Z1', 'Z1.mp3'),
-            new Track('Z2', 'Z2.mp3')
+            new Track('C1', 'C1.mp3')
         ]
 
         this.currentId = 0
