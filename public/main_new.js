@@ -180,6 +180,8 @@ class Controller {
     }
 
     ping() {
+
+        console.log("PINGING")
         // if(!this.pinging) {console.log("not pinging"); return false}
         // console.log("ping");
 
@@ -196,6 +198,7 @@ class Controller {
                 id: this.id
             })
         }).then(res => res.json()).then((res) => {
+        console.log("PINGED")
             //CHECKUP
             if (res.error) {
                 // alert("DISPOSITIVO RIMOSSO DAL SERVER")

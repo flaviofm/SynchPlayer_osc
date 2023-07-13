@@ -64,6 +64,7 @@ class Device {
     }
 
     pinged() {
+        console.log("PIINGED", this.id)
         clearTimeout(this.pingTimeout)
         this.pingTimeout = this.timeout()
     }
